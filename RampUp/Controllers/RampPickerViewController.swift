@@ -13,6 +13,7 @@ class RampPickerViewController: UIViewController {
 
     var sceneView: SCNView!
     var size: CGSize!
+    weak var rampPlacerViewController: RampPlacerViewController!
     
     init(size: CGSize) {
         super.init(nibName: nil, bundle: nil)
@@ -36,8 +37,10 @@ class RampPickerViewController: UIViewController {
         camera.usesOrthographicProjection = true
         scene.rootNode.camera = camera
         
-        createSceneObjects(scene: scene)
+        let tap = UITapGestureRecognizer(target: self, action: #selector(handleTap(_:)))
+        sceneView.addGestureRecognizer(tap)
         
+        createSceneObjects(scene: scene)
         preferredContentSize = size
     }
     
@@ -49,11 +52,25 @@ class RampPickerViewController: UIViewController {
     
     func addObjectToScene(forScene scene: SCNScene, forSceneName sceneName: String, nodeName: String, withScaleX scaleX: Float, withScaleY scaleY: Float, withScaleZ scaleZ: Float, positionX: Float, positionY: Float, positionZ: Float) {
         
+        let rotate = SCNAction.repeatForever(SCNAction.rotateBy(x: 0, y: CGFloat(0.01 * Double.pi), z: 0, duration: 0.01))
+        
         let object = SCNScene(named: sceneName)
         let objectNode = object?.rootNode.childNode(withName: nodeName, recursively: true)!
+        objectNode?.runAction(rotate)
         objectNode?.scale = SCNVector3Make(scaleX, scaleY, scaleZ)
         objectNode?.position = SCNVector3Make(positionX, positionY, positionZ)
         scene.rootNode.addChildNode(objectNode!)
+    }
+    
+    @objc func handleTap(_ gestureRecognizer: UIGestureRecognizer) {
+        let sceneViewPoint = gestureRecognizer.location(in: sceneView)
+        let hitResults = sceneView.hitTest(sceneViewPoint, options: [:])
+        
+        if hitResults.count > 0 {
+            let node = hitResults[0].node
+            print(node.name)
+            rampPlacerViewController.onRampSelected(node.name!)
+        }
     }
 
     override func didReceiveMemoryWarning() {
