@@ -36,12 +36,24 @@ class RampPickerViewController: UIViewController {
         camera.usesOrthographicProjection = true
         scene.rootNode.camera = camera
         
-        let object = SCNScene(named: "art.scnassets/pipe.dae")
-        let node = object?.rootNode.childNode(withName: "pipe", recursively: true)!
-        node?.scale = SCNVector3Make(0.0022, 0.0022, 0.0022)
-        node?.position = SCNVector3Make(-1, 0.7, -1)
-        scene.rootNode.addChildNode(node!)
+        createSceneObjects(scene: scene)
+        
         preferredContentSize = size
+    }
+    
+    func createSceneObjects(scene: SCNScene) {
+        addObjectToScene(forScene: scene, forSceneName: "art.scnassets/pipe.dae", nodeName: "pipe", withScaleX: 0.0022, withScaleY: 0.0022, withScaleZ: 0.0022, positionX: -1, positionY: 0.7, positionZ: -1)
+        addObjectToScene(forScene: scene, forSceneName: "art.scnassets/pyramid.dae", nodeName: "pyramid", withScaleX: 0.0058, withScaleY: 0.0058, withScaleZ: 0.0058, positionX: -1, positionY: -0.65, positionZ: -1)
+        addObjectToScene(forScene: scene, forSceneName: "art.scnassets/quarter.dae", nodeName: "quarter", withScaleX: 0.0058, withScaleY: 0.0058, withScaleZ: 0.0058, positionX: -1, positionY: -2.2, positionZ: -1)
+    }
+    
+    func addObjectToScene(forScene scene: SCNScene, forSceneName sceneName: String, nodeName: String, withScaleX scaleX: Float, withScaleY scaleY: Float, withScaleZ scaleZ: Float, positionX: Float, positionY: Float, positionZ: Float) {
+        
+        let object = SCNScene(named: sceneName)
+        let objectNode = object?.rootNode.childNode(withName: nodeName, recursively: true)!
+        objectNode?.scale = SCNVector3Make(scaleX, scaleY, scaleZ)
+        objectNode?.position = SCNVector3Make(positionX, positionY, positionZ)
+        scene.rootNode.addChildNode(objectNode!)
     }
 
     override func didReceiveMemoryWarning() {
