@@ -113,15 +113,17 @@ class RampPlacerViewController: UIViewController, ARSCNViewDelegate, UIPopoverPr
     }
     
     fileprivate func addGestureRecognizersToViewButtons() {
-        let gesture1 = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(gesture:)))
-        let gesture2 = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(gesture:)))
-        let gesture3 = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(gesture:)))
-        gesture1.minimumPressDuration = 0.1
-        gesture1.minimumPressDuration = 0.2
-        gesture1.minimumPressDuration = 0.3
-        rotateButton.addGestureRecognizer(gesture1)
-        upButton.addGestureRecognizer(gesture2)
-        downButton.addGestureRecognizer(gesture3)
+        let rotateButtonGesture = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(gesture:)))
+        let upButtonGesture = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(gesture:)))
+        let downButtonGesture = UILongPressGestureRecognizer(target: self, action: #selector(onLongPress(gesture:)))
+        
+        rotateButtonGesture.minimumPressDuration = 0.1
+        upButtonGesture.minimumPressDuration = 0.2
+        rotateButtonGesture.minimumPressDuration = 0.3
+        
+        rotateButton.addGestureRecognizer(rotateButtonGesture)
+        upButton.addGestureRecognizer(upButtonGesture)
+        downButton.addGestureRecognizer(downButtonGesture)
     }
     
     func onRampSelected(_ rampName: String) {
