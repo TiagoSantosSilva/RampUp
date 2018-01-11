@@ -22,7 +22,7 @@
                                 <rect key="frame" x="0.0" y="20" width="375" height="647"/>
                             </arscnView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qul-Tg-pF0">
-                                <rect key="frame" x="258" y="586" width="107" height="71"/>
+                                <rect key="frame" x="258" y="576" width="107" height="71"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="107" id="Ebr-ih-gWF"/>
                                     <constraint firstAttribute="height" constant="71" id="Psv-iw-D2T"/>
@@ -40,7 +40,7 @@
                             <constraint firstItem="tqd-Rh-la4" firstAttribute="top" secondItem="3mJ-cP-zf5" secondAttribute="top" id="Oiv-RY-INE"/>
                             <constraint firstItem="3mJ-cP-zf5" firstAttribute="trailing" secondItem="tqd-Rh-la4" secondAttribute="trailing" id="QIq-p5-8M5"/>
                             <constraint firstItem="3mJ-cP-zf5" firstAttribute="trailing" secondItem="qul-Tg-pF0" secondAttribute="trailing" constant="10" id="jlx-Wv-Kdf"/>
-                            <constraint firstItem="3mJ-cP-zf5" firstAttribute="bottom" secondItem="qul-Tg-pF0" secondAttribute="bottom" constant="10" id="k79-R7-zbW"/>
+                            <constraint firstItem="3mJ-cP-zf5" firstAttribute="bottom" secondItem="qul-Tg-pF0" secondAttribute="bottom" constant="20" id="k79-R7-zbW"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="3mJ-cP-zf5"/>
                     </view>
